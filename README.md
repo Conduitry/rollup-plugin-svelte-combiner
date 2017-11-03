@@ -7,6 +7,7 @@ This expects Svelte components to have an `.html` extension, the `<script>`s to 
 TODO:
 
 - allow file extension configuration for main component source file (`.html` vs. `.svelte` vs. whatever)
+- support external `.css` without external `.js` (maybe?)
 
 ## License
 
