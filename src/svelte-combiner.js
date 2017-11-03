@@ -12,21 +12,41 @@ function readText(filename) {
 	})
 }
 
-let componentsJs = new Set()
+let externalFiles = new Set()
 
 export default function svelteCombinerPlugin() {
 	return {
 		load(id) {
 			if (id.endsWith('.html')) {
 				let jsId = id.slice(0, -4) + 'js'
-				componentsJs.add(jsId)
-				return Promise.all([readText(id), readText(jsId)]).then(
-					([html, js]) =>
+				externalFiles.add(jsId)
+				let cssId = id.slice(0, -4) + 'css'
+				externalFiles.add(cssId)
+				return Promise.all([
+					readText(id),
+					readText(jsId),
+					readText(cssId),
+				]).then(
+					([html, js, css]) =>
 						js
-							? `${html}<script>${js}\nimport ${JSON.stringify(jsId)}</script>`
+							? css
+								? `${html}
+<script>
+${js}
+import ${JSON.stringify(jsId)}
+import ${JSON.stringify(cssId)}
+</script>
+<style>
+${css}
+</style>`
+								: `${html}
+<script>
+${js}
+import ${JSON.stringify(jsId)}
+</script>`
 							: html
 				)
-			} else if (componentsJs.has(id)) {
+			} else if (externalFiles.has(id)) {
 				return ''
 			}
 		},
