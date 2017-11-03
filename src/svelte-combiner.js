@@ -1,32 +1,20 @@
 import { readFile } from 'fs'
 
-function readText(filename) {
-	return new Promise(res => {
-		readFile(filename, (err, data) => {
-			if (err) {
-				res(null)
-			} else {
-				res(data.toString())
-			}
-		})
-	})
-}
-
-let externalFiles = new Set()
+const readText = filename =>
+	new Promise(res =>
+		readFile(filename, (err, data) => (err ? res(null) : res(data.toString())))
+	)
 
 export default function svelteCombinerPlugin() {
+	const externalFiles = new Set()
 	return {
 		load(id) {
 			if (id.endsWith('.html')) {
-				let jsId = id.slice(0, -4) + 'js'
+				const jsId = id.slice(0, -4) + 'js'
+				const cssId = id.slice(0, -4) + 'css'
 				externalFiles.add(jsId)
-				let cssId = id.slice(0, -4) + 'css'
 				externalFiles.add(cssId)
-				return Promise.all([
-					readText(id),
-					readText(jsId),
-					readText(cssId),
-				]).then(
+				return Promise.all([id, jsId, cssId].map(readText)).then(
 					([html, js, css]) =>
 						js
 							? css
