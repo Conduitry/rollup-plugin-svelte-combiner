@@ -1,13 +1,19 @@
-# Svelte-Combiner
+# rollup-plugin-svelte-combiner
 
 A simple Rollup plugin to allow the script and stylesheet portions of a Svelte component to be stored in separate files.
 
-This expects Svelte components to have an `.html` extension, the `<script>`s to have the same filename with a `.js` extension, and the `<style>`s to have the same filename with a `.css` extension. In your array of Rollup plugins, run this plugin before the regular `svelte` plugin.
+## Usage
 
-TODO:
+Import `svelteCombiner` in your `rollup.config.js`. Place it in your array of Rollup plugins before the main `svelte` plugin.
 
-- allow file extension configuration for main component source file (`.html` vs. `.svelte` vs. whatever)
+The main file of a component is by default expected to have an `.html` or `.svelte` extension. This can be configured by initializing the plugin with `svelteCombiner({ extensions: ['.something', '.another'] })`. These should typically be set to the same `extensions` as are passed to the main `svelte` plugin.
+
+The javascript portion of the component should have the same path and filename but with a `.js` extension. The stylesheet portion of the component should have the same path and filename but with a `.css` extension.
+
+## TODO
+
 - support external `.css` without external `.js` (maybe?)
+- watch for new corresponding `.js`/`.css` files being added after Rollup watch starts
 
 ## License
 
