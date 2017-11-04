@@ -5,13 +5,20 @@ const readText = filename =>
 		readFile(filename, (err, data) => (err ? res(null) : res(data.toString())))
 	)
 
-export default function svelteCombinerPlugin() {
+export default function svelteCombiner(
+	{ extensions = ['.html', '.svelte'] } = {}
+) {
 	const externalFiles = new Set()
 	return {
-		load(id) {
-			if (id.endsWith('.html')) {
-				const jsId = id.slice(0, -4) + 'js'
-				const cssId = id.slice(0, -4) + 'css'
+		load: id => {
+			if (externalFiles.has(id)) {
+				return ''
+			}
+			const extension = extensions.find(extension => id.endsWith(extension))
+			if (extension) {
+				const baseId = id.slice(0, -extension.length)
+				const jsId = baseId + '.js'
+				const cssId = baseId + '.css'
 				externalFiles.add(jsId)
 				externalFiles.add(cssId)
 				return Promise.all([id, jsId, cssId].map(readText)).then(
@@ -34,8 +41,6 @@ import ${JSON.stringify(jsId)}
 </script>`
 							: html
 				)
-			} else if (externalFiles.has(id)) {
-				return ''
 			}
 		},
 	}
