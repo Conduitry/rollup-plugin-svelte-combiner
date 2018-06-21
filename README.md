@@ -2,9 +2,13 @@
 
 A simple Rollup plugin to allow the script and stylesheet portions of a Svelte component to be stored in separate files.
 
+## Requirements
+
+This needs Rollup 0.61+. It's the first version that allows transforms to declare additional files that, when edited, trigger a rebuild during a watch.
+
 ## Usage
 
-Import `svelteCombiner` in your `rollup.config.js`. Place it in your array of Rollup plugins before the main `svelte` plugin.
+Import `svelteCombiner` in your `rollup.config.js`. Place `svelteCombiner()` in your array of Rollup plugins before the main `svelte` plugin.
 
 The main file of a component is by default expected to have an `.html` or `.svelte` extension. This can be configured by initializing the plugin with `svelteCombiner({ extensions: ['.something', '.another'] })`. These should typically be set to the same `extensions` as are passed to the main `svelte` plugin.
 
@@ -12,11 +16,10 @@ The javascript portion of the component should have the same path and filename b
 
 ## TODO
 
-- support external `.css` without external `.js` (maybe?)
-- watch for new corresponding `.js`/`.css` files being added after Rollup watch starts
+- watch for new corresponding `.js`/`.css` files being added after Rollup watch starts (maybe?)
 
 ## License
 
-Copyright (c) 2017 Conduitry
+Copyright (c) 2017-2018 Conduitry
 
-- [MIT](https://github.com/Conduitry/svelte-combiner/blob/master/LICENSE)
+- [MIT](https://github.com/Conduitry/rollup-plugin-svelte-combiner/blob/master/LICENSE)
