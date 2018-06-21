@@ -4,7 +4,8 @@ A simple Rollup plugin to allow the script and stylesheet portions of a Svelte c
 
 ## Requirements
 
-This needs Rollup 0.61+. It's the first version that allows transforms to declare additional files that, when edited, trigger a rebuild during a watch.
+- Node 8+
+- Rollup 0.61+
 
 ## Usage
 
