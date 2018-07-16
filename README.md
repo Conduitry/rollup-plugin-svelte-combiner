@@ -23,4 +23,4 @@ The javascript portion of the component should have the same path and filename b
 
 Copyright (c) 2017-2018 Conduitry
 
-- [MIT](https://github.com/Conduitry/rollup-plugin-svelte-combiner/blob/master/LICENSE)
+- [MIT](LICENSE)
