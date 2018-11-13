@@ -1,0 +1,20 @@
+{
+	"name": "rollup-plugin-svelte-combiner",
+	"version": "0.0.0",
+	"private": true,
+	"files": [
+		"index.js"
+	],
+	"engines": {
+		"node": ">=6"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Conduitry/rollup-plugin-svelte-combiner.git"
+	},
+	"author": "Conduitry",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Conduitry/rollup-plugin-svelte-combiner/issues"
+	}
+}
