@@ -4,12 +4,31 @@ A simple Rollup plugin to allow the script and stylesheet portions of a Svelte c
 
 ## Requirements
 
-- Node 8+
+- Node 6+
 - Rollup 0.61+
+
+## Installation
+
+This is not published to npm. Install from Git tags.
 
 ## Usage
 
 Import `svelteCombiner` in your `rollup.config.js`. Place `svelteCombiner()` in your array of Rollup plugins before the main `svelte` plugin.
+
+```javascript
+import svelte from 'rollup-plugin-svelte';
+import svelteCombiner from 'rollup-plugin-svelte-combiner';
+
+export default {
+	// ...
+	plugins: [
+		// ...
+		svelteCombiner(),
+		svelte(),
+		// ...
+	],
+};
+```
 
 The main file of a component is by default expected to have an `.html` or `.svelte` extension. This can be configured by initializing the plugin with `svelteCombiner({ extensions: ['.something', '.another'] })`. These should typically be set to the same `extensions` as are passed to the main `svelte` plugin.
 
