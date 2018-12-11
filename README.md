@@ -40,6 +40,4 @@ The javascript portion of the component should have the same path and filename b
 
 ## License
 
-Copyright (c) 2017-2018 Conduitry
-
-- [MIT](LICENSE)
+[MIT](LICENSE)
