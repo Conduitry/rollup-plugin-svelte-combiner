@@ -5,7 +5,7 @@ A simple Rollup plugin to allow the script and stylesheet portions of a Svelte c
 ## Requirements
 
 - Node 6+
-- Rollup 0.61+
+- Rollup 0.65+ or 1+
 
 ## Installation
 
